@@ -1,0 +1,13 @@
+{
+  "name": "deal-honesty-extension",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Chrome extension tests (the extension itself has no build step).",
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "package": "zip -r ../deal-honesty-extension.zip manifest.json src icons"
+  },
+  "devDependencies": {
+    "jsdom": "^25.0.0"
+  }
+}

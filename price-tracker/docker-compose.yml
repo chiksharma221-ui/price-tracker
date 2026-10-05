@@ -1,0 +1,51 @@
+# Full stack: MongoDB + Redis + API + scheduler + 2 scrape workers + dashboard.
+#   docker compose up --build
+#   Dashboard: http://localhost:5173   API: http://localhost:8000/docs
+services:
+  mongo:
+    image: mongo:7
+    volumes: [mongo-data:/data/db]
+
+  redis:
+    image: redis:7-alpine
+
+  api:
+    build: .
+    env_file: [.env]
+    environment:
+      MONGO_URI: mongodb://mongo:27017
+      REDIS_URL: redis://redis:6379/0
+      CORS_ORIGINS: http://localhost:5173
+    ports: ["8000:8000"]
+    depends_on: [mongo, redis]
+
+  scheduler:
+    build: .
+    command: python -m price_tracker.scheduler
+    env_file: [.env]
+    environment:
+      MONGO_URI: mongodb://mongo:27017
+      REDIS_URL: redis://redis:6379/0
+    depends_on: [mongo, redis]
+
+  worker:
+    build: .
+    command: rq worker scrape --url redis://redis:6379/0
+    env_file: [.env]
+    environment:
+      MONGO_URI: mongodb://mongo:27017
+      REDIS_URL: redis://redis:6379/0
+    depends_on: [mongo, redis]
+    deploy:
+      replicas: 2
+
+  dashboard:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_BASE: http://localhost:8000
+    ports: ["5173:80"]
+    depends_on: [api]
+
+volumes:
+  mongo-data:

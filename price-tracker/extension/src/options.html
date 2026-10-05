@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Deal Honesty Checker settings</title>
+  <link rel="stylesheet" href="ui.css" />
+</head>
+<body class="options">
+  <h1>Deal Honesty Checker settings</h1>
+  <p class="muted">
+    The extension sends the price details of product pages you open (name, price, MRP, advertised
+    discount, seller, deal badge and the page address) to your own tracker below. Nothing else is read or sent.
+  </p>
+  <form id="form">
+    <label>Tracker API address
+      <input id="backendUrl" type="url" required placeholder="http://127.0.0.1:8000" />
+    </label>
+    <label>Dashboard address <span class="muted">(for "Full price history" links)</span>
+      <input id="dashboardUrl" type="url" placeholder="http://127.0.0.1:5173" />
+    </label>
+    <label>API token <span class="muted">(only if your tracker sets API_TOKEN)</span>
+      <input id="apiToken" type="password" autocomplete="off" />
+    </label>
+    <label class="check"><input id="autoShow" type="checkbox" /> Show the result card on product pages</label>
+    <div class="row">
+      <button type="submit">Save settings</button>
+      <button type="button" id="test" class="secondary">Test connection</button>
+    </div>
+    <p id="message" role="status"></p>
+  </form>
+  <script src="settings.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "Deal Honesty Checker",
+  "version": "1.0.0",
+  "description": "Shows whether an Amazon.in or Flipkart discount is real, using the product's own price history.",
+  "icons": { "16": "icons/icon16.png", "48": "icons/icon48.png", "128": "icons/icon128.png" },
+  "action": { "default_popup": "src/popup.html", "default_title": "Deal Honesty Checker" },
+  "options_page": "src/options.html",
+  "background": { "service_worker": "src/background.js" },
+  "permissions": ["storage"],
+  "host_permissions": [
+    "https://www.amazon.in/*",
+    "https://www.flipkart.com/*",
+    "http://127.0.0.1:8000/*",
+    "http://localhost:8000/*"
+  ],
+  "optional_host_permissions": ["https://*/*", "http://*/*"],
+  "content_scripts": [
+    {
+      "matches": ["https://www.amazon.in/*", "https://www.flipkart.com/*"],
+      "js": ["src/extractors.js", "src/panel.js", "src/content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

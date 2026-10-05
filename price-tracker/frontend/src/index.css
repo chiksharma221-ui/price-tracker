@@ -1,0 +1,82 @@
+@import "tailwindcss";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
+@import "@fontsource/inter/700.css";
+@import "@fontsource/inter/800.css";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  --color-bg: #08090d;
+  --color-surface: #0f1117;
+  --color-surface-2: #151824;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-strong: rgba(255, 255, 255, 0.14);
+
+  --color-accent-from: #818cf8;
+  --color-accent-to: #e879f9;
+  --color-good: #34d399;
+  --color-good-soft: #10b981;
+  --color-warn: #fbbf24;
+  --color-muted: #7c8194;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: #e7e9ee;
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  background-image:
+    radial-gradient(60rem 30rem at 15% -10%, rgba(129, 140, 248, 0.16), transparent 60%),
+    radial-gradient(50rem 26rem at 100% 0%, rgba(232, 121, 249, 0.10), transparent 55%);
+  background-attachment: fixed;
+}
+
+::selection {
+  background: rgba(129, 140, 248, 0.35);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+  background-clip: padding-box;
+}
+
+.glass {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.015));
+  border: 1px solid var(--color-border);
+  backdrop-filter: blur(20px);
+}
+
+.gradient-text {
+  background-image: linear-gradient(90deg, var(--color-accent-from), var(--color-accent-to));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.btn-primary {
+  background-image: linear-gradient(135deg, var(--color-accent-from), var(--color-accent-to));
+}
+
+.focus-ring:focus-visible {
+  outline: 2px solid rgba(129, 140, 248, 0.6);
+  outline-offset: 2px;
+}

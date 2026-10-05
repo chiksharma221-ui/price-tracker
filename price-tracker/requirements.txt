@@ -1,0 +1,25 @@
+requests>=2.31
+beautifulsoup4>=4.12
+apscheduler>=3.10
+python-dotenv>=1.0
+fastapi>=0.110
+uvicorn[standard]>=0.29
+
+# Optional: only needed if you want MongoDB persistence instead of the
+# built-in local JSON store. The project runs fine without it.
+pymongo>=4.6
+
+# Optional: only needed to run the test suite.
+pytest>=8.0
+
+# Analysis: buy-or-wait model and sale-season report charts.
+scikit-learn>=1.4
+joblib>=1.3
+matplotlib>=3.8
+
+# Optional: distributed checking. Without REDIS_URL everything runs in-process.
+redis>=5.0
+rq>=1.16
+
+# Optional: API tests use FastAPI's TestClient.
+httpx>=0.27
